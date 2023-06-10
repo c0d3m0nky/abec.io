@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-33q#f)m6aw#+q^bw39s9a5lh$hd93m1x(&8(fc)+n!t4!acoc4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['abec.io', 'www.abec.io', 'www.theroomofrequirement.net']
 
 
 # Application definition
