@@ -3,8 +3,8 @@ FROM python:3.11
 WORKDIR /abec.io
 
 COPY ./src /abec.io/src
-COPY ./src/manage.py /abec.io/manage.py
-COPY ./src/requirements.txt /abec.io/requirements.txt
+COPY ./manage.py /abec.io/manage.py
+COPY ./requirements.txt /abec.io/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /abec.io/requirements.txt
 
