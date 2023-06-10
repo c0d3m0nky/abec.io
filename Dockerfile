@@ -8,4 +8,4 @@ COPY ./requirements.txt /abec.io/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /abec.io/requirements.txt
 
-CMD pip install --no-cache-dir --upgrade -r /abec.io/requirements.txt && python manage.py runserver 80
+CMD echo '---> pip install' && pip install --no-cache-dir --upgrade -r /abec.io/requirements.txt && echo '---> django migrations' && python manage.py migrate && echo '---> starting site' && python manage.py runserver 80
