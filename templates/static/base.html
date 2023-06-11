@@ -14,6 +14,21 @@
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("{% static 'img/iss.jpg' %}");
             background-size: cover;
         }
+
+        .social a:link {
+            text-decoration: none;
+        }
+
+        .social-text {
+            font-family: Monospace, sans-serif;
+            font-size: 8pt;
+            font-weight: bold;
+        }
+
+        .social-tinker {
+            line-height: 12px;
+            margin-top: 6px;
+        }
     </style>
     {% block head %}
     {% endblock %}
@@ -75,7 +90,19 @@
         </div>
         <div class="social d-flex justify-content-center">
             <a class="mx-2" href="https://twitter.com/c0d3m0nky" target="_blank"><i class="fab fa-twitter"></i></a>
-{#            <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>#}
+            <a class="mx-2" href="https://github.com/c0d3m0nky" target="_blank"><i class="fab fa-github"></i></a>
+            <a class="mx-2" href="https://www.tinkercad.com/users/ejeWI9zErb2-qbanbpc" target="_blank">
+                <div class="social-text social-tinker">
+                    <div>TIN</div>
+                    <div>KER</div>
+                    <div>CAD</div>
+                </div>
+            </a>
+            <a class="mx-2" href="https://forums.unraid.net/profile/127896-c0d3m0nk3y/" target="_blank">
+                <div class="social-text">
+                    <div>Unraid</div>
+                </div>
+            </a>
         </div>
     </div>
 </section>
