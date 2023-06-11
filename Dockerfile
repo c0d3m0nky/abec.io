@@ -2,7 +2,10 @@ FROM python:3.11
 
 WORKDIR /abec.io
 
-COPY ./src /abec.io/src
+COPY ./base_site /abec.io/base_site
+COPY ./assets /abec.io/assets
+COPY ./static /abec.io/static
+COPY ./templates /abec.io/templates
 COPY ./manage.py /abec.io/manage.py
 COPY ./requirements.txt /abec.io/requirements.txt
 
