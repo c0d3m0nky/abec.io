@@ -1,46 +1,73 @@
 {% extends "static/base.html" %}
 {% load static %}
 
-{% block head %}
+{% block head_base %}
     <style>
-        .about-section {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("{% static 'img/maker.jpg' %}");
+        .bg-iss {
+            --bs-bg-opacity: 1;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("{% static 'img/iss.jpg' %}");
             background-size: cover;
-            min-height: 35rem;
         }
 
-        /* DO NOT REMOVE! Overrides css of base.html element */
-        .contact-section {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("{% static 'img/woodworking.jpg' %}");
-            background-size: cover;
-            background-position: 50%;
-            min-height: 35rem;
+        .sep-row {
+            height: 50px;
         }
+
     </style>
 {% endblock %}
 
-{% block nav_sections %}
-    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-    {#                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>#}
-    {#                <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>#}
-{% endblock %}
-
-{% block masthead_content %}
-    <h1 class="mx-auto my-0 text-uppercase">Berto</h1>
-    <h2 class="text-white-50 mx-auto mt-2 mb-5">Space nerd; Professional 'engineer'; Amateur engineer; Chaotic Good; he/him</h2>
-    {#                <a class="btn btn-primary" href="#about">Get Started</a>#}
-{% endblock %}
-
 {% block content %}
-    <!-- About-->
-    <section class="about-section text-center" id="about">
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-8">
-                    <h2 class="text-white mb-4">[Something about me]</h2>
-                    <p class="text-white-50">
-                        [Something more about me, but in a smaller font]
-                    </p>
+    <section class="bg-iss bg-secondary pt-lg-3 pt-xl-4 pt-xxl-5 min-vh-100">
+        <div class="container-fluid">
+            <div class="row align-items-center min-vh-75">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="display-3 text-center mx-auto pt-5 my-2 my-sm-4" style="max-width: 680px;">Berto</h1>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <div class="d-flex col-12 justify-content-center">
+                            <div>Space nerd; Professional 'engineer'; Amateur engineer; Chaotic Good; he/him</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-faded-secondary pt-lg-3 pt-xl-4 pt-xxl-5">
+        <div class="container-fluid">
+            <div class="row align-items-center min-vh-75">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="row gx-4 gx-lg-5 justify-content-center">
+                            <div class="col-lg-8">
+                                <h2 class="text-white mb-4">Software Engineer</h2>
+                                <p class="text-white-50">
+                                    C#, Javascript, Java, Python, C++, .Net, Node, MSSql, Postgres, MariaDB, RabbitMQ, Kafka
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row sep-row">&nbsp;</div>
+                        <div class="row gx-4 gx-lg-5 justify-content-center">
+                            <div class="col-lg-8">
+                                <h2 class="text-white mb-4">Hobbies</h2>
+                                <p class="text-white-50">
+                                    Woodworking, Electronics Tinkerer, Tabletop Gaming, Story Rich Video Games, Gearhead, Flying
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row sep-row">&nbsp;</div>
+                        <div class="row gx-4 gx-lg-5 justify-content-center">
+                            <div class="col-lg-8">
+                                <h2 class="text-white mb-4">Interests</h2>
+                                <p class="text-white-50">
+                                    Space, Physics, Math, Aeronautics, Ska, Broadway, Rom-Coms, Heist Media, Queen's Thief
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

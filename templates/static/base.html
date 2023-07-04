@@ -1,24 +1,152 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark-mode" lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>abec.io</title>
 
     <link href="{% static 'bs/bootstrap-5.2.3.css' %}" rel="stylesheet">
-    <link href="{% static 'bs/startupbootstrap-grayscale-gh/css/styles.css' %}" rel="stylesheet">
-    <link href="{% static 'fa/fontawesome.min.css' %}" rel="stylesheet">
+    {#    <link href="{% static 'borrowed-grayscale-nav.css' %}" rel="stylesheet">#}
+
+    <!-- region Around theme -->
+
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon and Touch Icons-->
+    {#    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">#}
+    {#    <link rel="mask-icon" color="#6366f1" href="assets/favicon/safari-pinned-tab.svg">#}
+    {#    <link rel="manifest" href="assets/favicon/site.webmanifest">#}
+    {#    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">#}
+    {#    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">#}
+    {#    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">#}
+    {#    <meta name="msapplication-TileColor" content="#080032">#}
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
+    <!-- Vendor styles-->
+    <link rel="stylesheet" media="screen" href="{% static 'bs/around/assets/vendor/swiper/swiper-bundle.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'bs/around/assets/vendor/aos/dist/aos.css' %}"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="{% static 'bs/around/assets/css/theme.min.css' %}">
+
     <style>
-        .masthead {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("{% static 'img/iss.jpg' %}");
-            background-size: cover;
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
         }
 
-        .social a:link {
-            text-decoration: none;
+        .dark-mode .page-loading {
+            background-color: #121519;
         }
 
+        .page-loading.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active > .page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner > span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #6f788b;
+        }
+
+        .dark-mode .page-loading-inner > span {
+            color: #fff;
+            opacity: .6;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 2.75rem;
+            height: 2.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            background-color: #d7dde2;
+            border-radius: 50%;
+            opacity: 0;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        .dark-mode .page-spinner {
+            background-color: rgba(255, 255, 255, .25);
+        }
+
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        @keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+    </style>
+    <script>
+        (function () {
+            window.onload = function () {
+                const preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function () {
+                    preloader.remove();
+                }, 1500);
+            };
+        })();
+
+    </script>
+
+    <!-- endregion Around theme -->
+
+    <style>
         .social-text {
             font-family: Monospace, sans-serif;
             font-size: 8pt;
@@ -26,94 +154,134 @@
         }
 
         .social-tinker {
-            line-height: 12px;
-            margin-top: 6px;
+            line-height: 9px;
+            margin-top: 1px;
+        }
+
+        .min-vh-75 {
+            min-height: 75vh !important;
         }
     </style>
-    {% block head %}
+
+    <link href="{% static 'fa/fontawesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'static-base.css' %}" rel="stylesheet">
+    {% block head_base %}
     {% endblock %}
 </head>
 <body>
-
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand">Alberto Bec</a>
-        {% block ovr_nav %}
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    {% block nav_sections %}
-                    {% endblock %}
-                </ul>
-            </div>
-        {% endblock %}
+<div class="page-loading active">
+    <div class="page-loading-inner">
+        <div class="page-spinner"></div>
+        <span>Loading...</span>
     </div>
-</nav>
+</div>
+<main class="page-wrapper">
+    {% block nav_bar %}
+        <header class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <a class="navbar-brand pe-sm-3" href="/">abec.io</a>
+                <nav class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+                        {% block ovr_nav %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
+                                <div class="dropdown-menu overflow-hidden p-0">
+                                    <div class="d-lg-flex">
+                                        <div class="mega-dropdown-column pt-1 pt-lg-3 pb-lg-4">
+                                            <ul class="list-unstyled mb-0">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Placeholder 1</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-dropdown-column pb-2 pt-lg-3 pb-lg-4">
+                                            <ul class="list-unstyled mb-0">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Placeholder 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Placeholder</a>
+                            </li>
+                        {% endblock %}
+                        {% block add_nav %}
+                        {% endblock %}
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    {% endblock %}
 
-{% block ovr_masthead %}
-    <header class="masthead">
-        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-            <div class="d-flex justify-content-center">
-                <div class="text-center">
-                    {% block masthead_content %}
-                    {% endblock %}
+    <span id="top"></span>
+
+    {% block content %}
+    {% endblock %}
+</main>
+<footer class="footer bg-secondary py-5">
+    <div class="container pt-md-2 pt-lg-3 pt-xl-4">
+        <div class="row pb-4 pb-md-5 pt-sm-2 mb-lg-2">
+            <div class="col-md-4 col-lg-3 pb-2 pb-md-0 mb-4 mb-md-0">
+                <a class="navbar-brand text-nav py-0 mb-3 mb-md-4" href="index.html">
+                    <span>abec.io</span>
+                </a>
+                <div class="fs-sm pb-2 pb-md-3 mb-3">
+                    <div>De Puri Cordis</div>
+                    <div>Natus Rebellis</div>
+                </div>
+                <div class="d-flex">
+                    <a class="btn btn-icon btn-md btn-secondary btn-twitter rounded-circle me-3" href="https://twitter.com/c0d3m0nky" target="_blank">
+                        <i class="ai-twitter"></i>
+                    </a>
+                    <a class="btn btn-icon btn-md btn-secondary btn-github rounded-circle me-3" href="https://github.com/c0d3m0nky" target="_blank">
+                        <i class="ai-github"></i>
+                    </a>
+                    <a class="btn btn-icon btn-md btn-secondary btn-github rounded-circle me-3" href="https://www.tinkercad.com/users/ejeWI9zErb2-qbanbpc" target="_blank">
+                        <div class="social-text social-tinker">
+                            <div>TIN</div>
+                            <div>KER</div>
+                            <div>CAD</div>
+                        </div>
+                    </a>
+                    <a class="btn btn-icon btn-md btn-secondary btn-github rounded-circle me-3" href="https://forums.unraid.net/profile/127896-c0d3m0nk3y/" target="_blank">
+                        <div class="social-text">
+                            <div>Unraid</div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-    </header>
-{% endblock %}
-
-{% block content %}
-{% endblock %}
-
-<!-- Contact-->
-<section class="contact-section bg-black">
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5">
-            <div class="col-md-4 mb-3 mb-md-0"></div>
-            <div class="col-md-4 mb-3 mb-md-0">
-                <div class="card py-4 h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                        <h4 class="text-uppercase m-0">Address</h4>
-                        <hr class="my-4 mx-auto"/>
-                        <div class="small text-black-50">Earth, Sol System, Milky Way, Local Cluster</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3 mb-md-0"></div>
-        </div>
-        <div class="social d-flex justify-content-center">
-            <a class="mx-2" href="https://twitter.com/c0d3m0nky" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a class="mx-2" href="https://github.com/c0d3m0nky" target="_blank"><i class="fab fa-github"></i></a>
-            <a class="mx-2" href="https://www.tinkercad.com/users/ejeWI9zErb2-qbanbpc" target="_blank">
-                <div class="social-text social-tinker">
-                    <div>TIN</div>
-                    <div>KER</div>
-                    <div>CAD</div>
-                </div>
-            </a>
-            <a class="mx-2" href="https://forums.unraid.net/profile/127896-c0d3m0nk3y/" target="_blank">
-                <div class="social-text">
-                    <div>Unraid</div>
-                </div>
-            </a>
-        </div>
+        <p class="fs-sm mb-0">
+            <span class="opacity-70">Copyright &copy; abec.io 2023. All rights reserved. Theme by </span>
+            <a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a>
+        </p>
     </div>
-</section>
-
-<!-- Footer-->
-<footer class="footer bg-black small text-center text-white-50">
-    <div class="container px-4 px-lg-5">Copyright &copy; abec.io 2023</div>
 </footer>
 
-<script src="{% static 'bs/bootstrap-5.2.3.js' %}"></script>
-<script src="{% static 'bs/startupbootstrap-grayscale-gh/js/scripts.js' %}"></script>
+<!-- Back to top button-->
+<a class="btn-scroll-top" href="#top" data-scroll>
+    <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+    </svg>
+    <i class="ai-arrow-up"></i>
+</a>
+
+
+{#<script src="{% static 'bs/bootstrap-5.2.3.js' %}"></script>#}
 <script src="{% static 'fa/fontawesome.js' %}"></script>
+<!-- region Around theme -->
+<script src="{% static 'bs/around/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'bs/around/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+<script src="{% static 'bs/around/assets/vendor/parallax-js/dist/parallax.min.js' %}"></script>
+<script src="{% static 'bs/around/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'bs/around/assets/vendor/aos/dist/aos.js' %}"></script>
+<!-- Main theme script-->
+<script src="{% static 'bs/around/assets/js/theme.min.js' %}"></script>
+<!-- endregion Around theme -->
+{% block scripts_base %}
+{% endblock %}
 </body>
 </html>
