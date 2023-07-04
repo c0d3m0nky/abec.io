@@ -9,5 +9,5 @@ def index(request):
 def resume(request):
     return render(request, "static/resume.html", {})
 
-# D&D combat time tracker
+
 

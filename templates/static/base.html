@@ -7,7 +7,6 @@
     <title>abec.io</title>
 
     <link href="{% static 'bs/bootstrap-5.2.3.css' %}" rel="stylesheet">
-    {#    <link href="{% static 'borrowed-grayscale-nav.css' %}" rel="stylesheet">#}
 
     <!-- region Around theme -->
 
@@ -30,8 +29,6 @@
     <!-- Vendor styles-->
     <link rel="stylesheet" media="screen" href="{% static 'bs/around/assets/vendor/swiper/swiper-bundle.min.css' %}"/>
     <link rel="stylesheet" media="screen" href="{% static 'bs/around/assets/vendor/aos/dist/aos.css' %}"/>
-    <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="{% static 'bs/around/assets/css/theme.min.css' %}">
 
     <style>
         .page-loading {
@@ -144,12 +141,16 @@
 
     </script>
 
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="{% static 'bs/around/assets/css/theme.min.css' %}">
+
     <!-- endregion Around theme -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <!--suppress CssUnusedSymbol -->
     <style>
         body {
             font-family: 'Lexend', sans-serif;
@@ -173,6 +174,19 @@
         .min-vh-75 {
             min-height: 75vh !important;
         }
+
+        .offset-nav {
+            margin-left: 4vw;
+        }
+
+        .btn-icon {
+            font-size: 2em;
+        }
+
+        .btn-icon span {
+            margin-top: -5px;
+            color: gray;
+        }
     </style>
 
     <link href="{% static 'fa/fontawesome.min.css' %}" rel="stylesheet">
@@ -193,7 +207,10 @@
             <div class="container">
                 <a class="navbar-brand brand-text pe-sm-3" href="/">abec.io</a>
                 <nav class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+                    <ul class="navbar-nav navbar-nav-scroll me-auto d-flex" style="--ar-scroll-height: 520px;">
+                        {% block splice_nav %}
+
+                        {% endblock %}
                         {% block ovr_nav %}
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
@@ -202,7 +219,7 @@
                                         <div class="mega-dropdown-column pt-1 pt-lg-3 pb-lg-4">
                                             <ul class="list-unstyled mb-0">
                                                 <li>
-                                                    <a class="dropdown-item" href="#">Placeholder 1</a>
+                                                    <a class="dropdown-item" href="/tools/dnd/roundtracker">D&D Round Tracker</a>
                                                 </li>
                                             </ul>
                                         </div>
