@@ -30,6 +30,11 @@ SECRET_KEY = 'django-insecure-33q#f)m6aw#+q^bw39s9a5lh$hd93m1x(&8(fc)+n!t4!acoc4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # os.environ.get('DEBUG') and os.environ.get('DEBUG').lower() == 'true'
 
+if DEBUG:
+    print('--- !!! DEBUG var is on !!!')
+else:
+    print('--- DEBUG var is off')
+
 ALLOWED_HOSTS = ['abec.io', 'www.abec.io', 'www.theroomofrequirement.net', '127.0.0.1']
 
 # Application definition
