@@ -16,8 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import logging
+from . import settings
+
+logger = logging.getLogger(__name__)
 
 urlpatterns = [
     path("", include("static.urls")),
     path("tools/", include("tools.urls"))
 ]
+
+if settings.DEBUG:
+    logger.warning(f'{__name__} :: {settings.DEBUG}')

@@ -28,12 +28,7 @@ else:
 SECRET_KEY = 'django-insecure-33q#f)m6aw#+q^bw39s9a5lh$hd93m1x(&8(fc)+n!t4!acoc4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False  # os.environ.get('DEBUG') and os.environ.get('DEBUG').lower() == 'true'
-
-if DEBUG:
-    print('--- !!! DEBUG var is on !!!')
-else:
-    print('--- DEBUG var is off')
+DEBUG = os.environ.get('DEBUG') and os.environ.get('DEBUG').lower() == 'true'
 
 ALLOWED_HOSTS = ['abec.io', 'www.abec.io', 'www.theroomofrequirement.net', '127.0.0.1']
 
@@ -138,3 +133,58 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# LOGGING_CONFIG = None
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'detailed': {
+            'format': '{asctime} {levelname} {module} {name}.{funcName}:{lineno}: {message}',
+            'style': '{'
+        },
+        'default': {
+            'format': '{asctime} {levelname} {name} {module} {message}',
+            'style': '{'
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'default',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': '/dev/null',
+            'formatter': 'detailed',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'formatter': 'default',
+            'propagate': False,
+        },
+        '': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'formatter': 'default',
+            'propagate': False,
+        }
+    },
+}
+
+log_dir = os.environ.get('LOG')
+
+if log_dir:
+    log_dir = Path(log_dir)
+
+    if log_dir.exists():
+        LOGGING['handlers']['file']['filename'] = (log_dir.expanduser().resolve() / 'log.txt').as_posix()
+
+if DEBUG:
+    print('--- !!! DEBUG var is on !!!')
+else:
+    print('--- DEBUG var is off')
