@@ -21,7 +21,6 @@ if os.environ.get('DB_DIR'):
 else:
     DB_DIR = BASE_DIR
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -29,10 +28,9 @@ else:
 SECRET_KEY = 'django-insecure-33q#f)m6aw#+q^bw39s9a5lh$hd93m1x(&8(fc)+n!t4!acoc4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False  # os.environ.get('DEBUG') and os.environ.get('DEBUG').lower() == 'true'
 
 ALLOWED_HOSTS = ['abec.io', 'www.abec.io', 'www.theroomofrequirement.net', '127.0.0.1']
-
 
 # Application definition
 
@@ -43,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'base_site.urls'
@@ -75,7 +75,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'base_site.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -85,7 +84,6 @@ DATABASES = {
         'NAME': DB_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -105,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -117,14 +114,19 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+
 STATIC_URL = 'assets/'
 
+STATIC_ROOT = BASE_DIR / 'assets'
+
 STATICFILES_DIRS = [
-    BASE_DIR / "assets"
+    STATIC_ROOT / 'bs',
+    STATIC_ROOT / 'css',
+    STATIC_ROOT / 'fa',
+    STATIC_ROOT / 'img',
 ]
 
 # Default primary key field type

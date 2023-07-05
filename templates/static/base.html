@@ -190,7 +190,7 @@
     </style>
 
     <link href="{% static 'fa/fontawesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'static-base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/static-base.css' %}" rel="stylesheet">
     {% block head_base %}
     {% endblock %}
 </head>
@@ -301,6 +301,8 @@
 
 {#<script src="{% static 'bs/bootstrap-5.2.3.js' %}"></script>#}
 <script src="{% static 'fa/fontawesome.js' %}"></script>
+{% block scripts_base %}
+{% endblock %}
 <!-- region Around theme -->
 <script src="{% static 'bs/around/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'bs/around/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
@@ -310,7 +312,5 @@
 <!-- Main theme script-->
 <script src="{% static 'bs/around/assets/js/theme.min.js' %}"></script>
 <!-- endregion Around theme -->
-{% block scripts_base %}
-{% endblock %}
 </body>
 </html>
