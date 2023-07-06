@@ -27,4 +27,4 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    logger.warning(f'{__name__} :: {settings.DEBUG}')
+    logger.warning('DEBUG var is on')
