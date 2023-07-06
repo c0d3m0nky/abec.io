@@ -127,6 +127,7 @@ STATICFILES_DIRS = [
     STATIC_ROOT / 'css',
     STATIC_ROOT / 'fa',
     STATIC_ROOT / 'img',
+    STATIC_ROOT / 'dist',
 ]
 
 # Default primary key field type
