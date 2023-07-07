@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
 ]
+
+if not DEBUG:
+    INSTALLED_APPS.append('whitenoise.runserver_nostatic')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,8 +54,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+if not DEBUG:
+    INSTALLED_APPS.append('whitenoise.middleware.WhiteNoiseMiddleware')
 
 ROOT_URLCONF = 'base_site.urls'
 
@@ -120,15 +124,20 @@ USE_TZ = True
 
 STATIC_URL = 'assets/'
 
-STATIC_ROOT = BASE_DIR / 'assets'
+if not DEBUG:
+    STATIC_ROOT = BASE_DIR / 'assets'
 
-STATICFILES_DIRS = [
-    STATIC_ROOT / 'bs',
-    STATIC_ROOT / 'css',
-    STATIC_ROOT / 'fa',
-    STATIC_ROOT / 'img',
-    STATIC_ROOT / 'dist',
-]
+    STATICFILES_DIRS = [
+        STATIC_ROOT / 'bs',
+        STATIC_ROOT / 'css',
+        STATIC_ROOT / 'fa',
+        STATIC_ROOT / 'img',
+        STATIC_ROOT / 'dist',
+    ]
+else:
+    STATICFILES_DIRS = [
+        BASE_DIR / 'assets'
+    ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

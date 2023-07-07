@@ -21,7 +21,7 @@ npm install
 echo '---'
 echo 'copying jquery bundle'
 echo '---'
-cp ./node_modules/@types/jquery/dist/jquery.slim.d.ts ../assets/dist
+cp ./node_modules/jquery/dist/jquery.js ../assets/dist
 
 echo '---'
 echo 'typescript build'

@@ -180,13 +180,30 @@
         }
 
         .btn-icon {
-            font-size: 2em;
+            font-size: 2.25em;
         }
 
         .btn-icon span {
-            margin-top: -5px;
+            margin-top: -7px;
             color: gray;
         }
+
+        .btn-icon.btn-sm {
+            font-size: 1.75em;
+        }
+
+        .btn-icon.btn-sm span {
+            margin: -5px 0px 0px 1px;
+        }
+
+        .btn-icon.btn-xs {
+            font-size: 1em;
+        }
+
+        .btn-icon.btn-xs span {
+            margin: -2.5px 0px 0px 0px;
+        }
+
     </style>
 
     <link href="{% static 'fa/fontawesome.min.css' %}" rel="stylesheet">
@@ -301,6 +318,8 @@
 
 {#<script src="{% static 'bs/bootstrap-5.2.3.js' %}"></script>#}
 <script src="{% static 'fa/fontawesome.js' %}"></script>
+<script src="{% static 'dist/jquery.js' %}"></script>
+<script src="{% static 'dist/common.js' %}"></script>
 {% block scripts_base %}
 {% endblock %}
 <!-- region Around theme -->
