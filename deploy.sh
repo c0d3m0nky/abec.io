@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+rm -r assets/dist
+
 ./buildWeb.sh
 
 docker build -t c0d3m0nk3y/abec.io:latest ./
