@@ -1,8 +1,9 @@
 #!/usr/bin/bash
 
+set -e
+
 export NVM_DIR=$HOME/.nvm;
 source "$NVM_DIR"/nvm.sh;
-
 
 mkdir -p ./assets/dist
 
@@ -23,12 +24,8 @@ echo 'copying jquery bundle'
 echo '---'
 cp ./node_modules/jquery/dist/jquery.js ../assets/dist
 
-mkdir -p ../assets/dist/uuid
-
-cp -r ./node_modules/uuid/dist/* ../assets/dist/uuid
-
 echo '---'
-echo 'typescript build'
+echo 'webpack build'
 echo '---'
-./node_modules/.bin/tsc
+npm run develop
 
