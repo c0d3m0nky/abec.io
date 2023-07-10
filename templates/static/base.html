@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>abec.io</title>
 
-    <link href="{% static 'bs/bootstrap-5.2.3.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/css/bootstrap-5.2.3.css' %}" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 
     <!-- region Around theme -->
 
@@ -23,12 +29,10 @@
     {#    <meta name="msapplication-TileColor" content="#080032">#}
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
     <!-- Vendor styles-->
-    <link rel="stylesheet" media="screen" href="{% static 'bs/around/assets/vendor/swiper/swiper-bundle.min.css' %}"/>
-    <link rel="stylesheet" media="screen" href="{% static 'bs/around/assets/vendor/aos/dist/aos.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'dist/css/around/swiper-bundle.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'dist/css/around/aos.css' %}"/>
 
     <style>
         .page-loading {
@@ -142,14 +146,10 @@
     </script>
 
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="{% static 'bs/around/assets/css/theme.min.css' %}">
+    {#    <link rel="stylesheet" media="screen" href="{% static 'dist/css/around/theme.min.css' %}">#}
+    <link rel="stylesheet" media="screen" href="{% static 'dist/css/around/theme.css' %}">
 
     <!-- endregion Around theme -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
     <!--suppress CssUnusedSymbol -->
     <style>
         body {
@@ -158,6 +158,10 @@
 
         .brand-text {
             font-family: 'Caprasimo', cursive;
+            background: -webkit-linear-gradient(#ffffff 39%, #cc00cc 80%);
+            background-clip: border-box;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .social-text {
@@ -204,10 +208,60 @@
             margin: -2.5px 0px 0px 0px;
         }
 
+        {% if settings_dev %}
+            body::before {
+                content: "";
+                color: red;
+                font-size: 2rem;
+                font-weight: bold;
+                position: fixed;
+                top: 0;
+                right: 5px;
+            }
+
+            .dev-view-width {
+                color: red;
+                font-size: 0.75rem;
+                font-weight: bold;
+                position: fixed;
+                top: 40px;
+                right: 10px;
+            }
+
+            @media (min-width: 576px) {
+                body::before {
+                    content: "SM";
+                }
+            }
+
+            @media (min-width: 768px) {
+                body::before {
+                    content: "MD";
+                }
+            }
+
+            @media (min-width: 992px) {
+                body::before {
+                    content: "LG";
+                }
+            }
+
+            @media (min-width: 1200px) {
+                body::before {
+                    content: "XL";
+                }
+            }
+
+            @media (min-width: 1400px) {
+                body::before {
+                    content: "XXL";
+                }
+            }
+        {% endif %}
     </style>
 
-    <link href="{% static 'fa/fontawesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/static-base.css' %}" rel="stylesheet">
+    <link href="{% static '/fa/fontawesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/css/static-base.css' %}" rel="stylesheet">
     {% block head_base %}
     {% endblock %}
 </head>
@@ -236,7 +290,7 @@
                                         <div class="mega-dropdown-column pt-1 pt-lg-3 pb-lg-4">
                                             <ul class="list-unstyled mb-0">
                                                 <li>
-                                                    <a class="dropdown-item" href="/tools/dnd/roundtracker?hide_sample">D&D Round Tracker</a>
+                                                    <a class="dropdown-item" href="/tools/dnd/roundtracker">D&D Round Tracker</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -271,7 +325,7 @@
     <div class="container pt-md-2 pt-lg-3 pt-xl-4">
         <div class="row pb-4 pb-md-5 pt-sm-2 mb-lg-2">
             <div class="col-md-4 col-lg-3 pb-2 pb-md-0 mb-4 mb-md-0">
-                <a class="navbar-brand brand-text text-nav py-0 mb-3 mb-md-4" href="index.html">
+                <a class="navbar-brand brand-text text-nav py-0 mb-3 mb-md-4" href="/">
                     <span>abec.io</span>
                 </a>
                 <div class="fs-sm pb-2 pb-md-3 mb-3">
@@ -316,19 +370,54 @@
 </a>
 
 
-{#<script src="{% static 'bs/bootstrap-5.2.3.js' %}"></script>#}
+<script src="{% static 'dist/bootstrap-5.2.3.min.js' %}"></script>
 <script src="{% static 'fa/fontawesome.js' %}"></script>
-{#<script src="{% static 'dist/jquery.js' %}"></script>#}
+<script src="{% static 'dist/jquery.js' %}"></script>
+<script lang="JavaScript">
+    /*
+    $('.navbar-brand').on('contextmenu', e => {
+        let brand = $('.navbar-brand');
+
+        if (brand.hasClass('brand-text')) {
+            brand.removeClass('brand-text');
+            brand.addClass('brand-text-2');
+        } else {
+            brand.removeClass('brand-text-2');
+            brand.addClass('brand-text');
+        }
+
+        e.stopPropagation();
+    });
+     */
+</script>
+
+{% if settings_dev %}
+    <div class="dev-view-width"></div>
+    <script lang="JavaScript">
+        function set(){
+            $('.dev-view-width').text(`${window.innerWidth}x${window.innerHeight}`)
+        }
+
+        addEventListener("resize", (event) => { set(); });
+
+        set();
+    </script>
+{% endif %}
+
 {% block scripts_base %}
 {% endblock %}
 <!-- region Around theme -->
-<script src="{% static 'bs/around/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'bs/around/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
-<script src="{% static 'bs/around/assets/vendor/parallax-js/dist/parallax.min.js' %}"></script>
-<script src="{% static 'bs/around/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-<script src="{% static 'bs/around/assets/vendor/aos/dist/aos.js' %}"></script>
+<script src="{% static 'dist/around/smooth-scroll.polyfills.js' %}"></script>
+<script src="{% static 'dist/around/parallax.min.js' %}"></script>
+<script src="{% static 'dist/around/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'dist/around/aos.js' %}"></script>
 <!-- Main theme script-->
-<script src="{% static 'bs/around/assets/js/theme.min.js' %}"></script>
+{% if settings_debug %}
+    <script src="{% static 'dist/around/theme.js' %}"></script>
+{% else %}
+    <script src="{% static 'dist/around/theme.js' %}"></script>
+    {#    <script src="{% static 'dist/around/theme.min.js' %}"></script>#}
+{% endif %}
 <!-- endregion Around theme -->
 </body>
 </html>

@@ -1,11 +1,16 @@
 import './common';
-import {v1 as uuidv1, v4 as uuidv4} from 'uuid';
+import {v1 as uuidv1} from 'uuid';
 import jquery from 'jquery';
-
+import Shuffle from 'shufflejs';
 
 const $: JQueryStatic = jquery;
 
 let _defaultTrackerValue = 10;
+
+let masonryGrid = new Shuffle($('.masonry-grid')[0], {
+    itemSelector: '.masonry-grid-item',
+    sizer: '.masonry-grid-item'
+});
 
 function genId(name: string) {
     return `${name.replace(' ', '_')}_${uuidv1()}`;
@@ -40,7 +45,7 @@ class TrackerGroup implements ITrackerGroup {
                     <input type="text" class="form-control in-place-edit">
                 </div>
                 <div class="col-1" style="margin-right: 9px;">
-                    <button class="btn btn-xs btn-icon btn-secondary rounded-circle remove-group" type="button" style="margin-bottom: 4px;"><span>x</span></button>
+                    <button class="btn btn-xs btn-icon btn-secondary rounded-circle remove-group" type="button" style="margin-bottom: 4px;" tabindex="-1"><span>x</span></button>
                 </div>
             </div>
         </div>
@@ -69,22 +74,27 @@ class TrackerGroup implements ITrackerGroup {
 
         this._element.data('model', this);
 
+        // noinspection TypeScriptValidateTypes
         this._element.find('.tracker-group-name input').val(this.name);
 
+        // noinspection TypeScriptValidateTypes
         this._element.find('.tracker-group-name input').on('change', e => {
             this.name = (e.currentTarget as HTMLInputElement).value;
             saveSession();
         });
 
-        this._element.find('.btn.remove-group').on('click', e => {
+        // noinspection TypeScriptValidateTypes
+        this._element.find('.btn.remove-group').on('click', () => {
             let i = _groups.indexOf(this);
 
             _groups.splice(i, 1);
             this._element.remove();
+            masonryGrid.remove(this._element.get())
             saveSession();
         });
 
-        this._element.find('.btn.add-tracker').on('click', e => {
+        // noinspection TypeScriptValidateTypes
+        this._element.find('.btn.add-tracker').on('click', () => {
             this.addTracker();
         });
     }
@@ -101,8 +111,13 @@ class TrackerGroup implements ITrackerGroup {
 
         this.trackers.push(tr);
         _trackers.push(tr);
+        // noinspection TypeScriptValidateTypes
         tr._element.insertBefore(this._element.find(`.add-tracker-row`));
-        if (select) tr._element.find('.tracker-item-title input').select();
+        masonryGrid.update({recalculateSizes: true});
+        if (select) {
+            // noinspection TypeScriptValidateTypes
+            tr._element.find('.tracker-item-title input').select();
+        }
         saveSession();
     }
 
@@ -147,15 +162,18 @@ class Tracker implements ITracker {
 
         this._element.data('model', this);
 
+        // noinspection TypeScriptValidateTypes
         this._element.find('.tracker-item-title input').val(this.name);
         this.setMax(this.max)
         this.setValue(this.value);
 
+        // noinspection TypeScriptValidateTypes
         this._element.find('.tracker-item-title input').on('change', e => {
             this.name = (e.currentTarget as HTMLInputElement).value;
             saveSession();
         });
 
+        // noinspection TypeScriptValidateTypes
         this._element.find('.tracker-item-value input').on('change', e => {
             let v = parseInt((e.currentTarget as HTMLInputElement).value);
 
@@ -177,6 +195,7 @@ class Tracker implements ITracker {
 
         if (!this._ticked && this.value > this.max) this.setMax(this.value);
 
+        // noinspection TypeScriptValidateTypes
         this._element.find('.tracker-item-value input').val(this.value);
 
         if (this.value === 0) {
@@ -218,12 +237,17 @@ function addTrackerGroup(obj: ITrackerGroup | null = null): void {
     _groups.push(tg);
 
     $('#tracker-groups').append(tg._element);
+    masonryGrid.add(tg._element.get());
+
 
     for (let t of obj.trackers) {
         tg.addTracker(t, false)
     }
 
-    if (select) tg._element.find('.tracker-group-name input').select();
+    if (select) {
+        // noinspection TypeScriptValidateTypes
+        tg._element.find('.tracker-group-name input').select();
+    }
 
     if (_initComplete) saveSession();
 }
@@ -311,12 +335,5 @@ setTimeout(() => {
                 }
             ]
         });
-    }
-
-    if ($('.sample-tracker-group').length > 0) {
-        $('.sample-tracker-group .row:nth-child(1) .tracker-item-title input').val('Storm Rune')
-        $('.sample-tracker-group .row:nth-child(1) .tracker-item-value input').val('5')
-        $('.sample-tracker-group .row:nth-child(2) .tracker-item-title input').val('Hill Rune')
-        $('.sample-tracker-group .row:nth-child(2) .tracker-item-value input').val('5')
     }
 }, 500);

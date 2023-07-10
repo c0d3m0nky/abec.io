@@ -5,7 +5,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ES2020",
-    "esModuleInterop": true
-
+    "esModuleInterop": true,
+    "moduleResolution":"node",
   }
 }

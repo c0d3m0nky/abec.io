@@ -1,1 +1,0 @@
-https://startbootstrap.com/previews/grayscale

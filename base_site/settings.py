@@ -28,7 +28,8 @@ else:
 SECRET_KEY = 'django-insecure-33q#f)m6aw#+q^bw39s9a5lh$hd93m1x(&8(fc)+n!t4!acoc4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') and os.environ.get('DEBUG').lower() == 'true'
+DEBUG = 'DEBUG' in os.environ and os.environ.get('DEBUG').lower() == 'true'
+DEV_MODE = 'DEV_MODE' in os.environ and os.environ.get('DEV_MODE').lower() == 'true'
 
 ALLOWED_HOSTS = ['abec.io', 'www.abec.io', 'www.theroomofrequirement.net', '127.0.0.1']
 
@@ -72,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "base_site.context_processors.settings_model",
             ],
         },
     },
@@ -128,7 +130,6 @@ if not DEBUG:
     STATIC_ROOT = BASE_DIR / 'assets'
 
     STATICFILES_DIRS = [
-        STATIC_ROOT / 'bs',
         STATIC_ROOT / 'css',
         STATIC_ROOT / 'fa',
         STATIC_ROOT / 'img',
