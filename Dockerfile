@@ -7,6 +7,7 @@ COPY ./assets /abec.io/assets/
 COPY ./static /abec.io/static/
 COPY ./tools /abec.io/tools/
 COPY ./templates /abec.io/templates/
+COPY ./utils /abec.io/utils/
 COPY ./manage.py /abec.io/manage.py
 COPY ./requirements.txt /abec.io/requirements.txt
 
