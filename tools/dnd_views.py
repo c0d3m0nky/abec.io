@@ -1,9 +1,17 @@
-from django.http import HttpResponse
+from os import environ
+from django.http import HttpResponse, HttpRequest, HttpHeaders
 from django.shortcuts import render
+from typing import Tuple, List
 import logging
+
+import utils.u_http as http
 
 logger = logging.getLogger(__name__)
 
+def round_tracker(request: HttpRequest):
+    ctx = {'plugin_layout': 'plugin_layout' in request.GET}
+    resp: HttpResponse = render(request, "dnd/round-tracker.html", ctx)
 
-def round_tracker(request):
-    return render(request, "dnd/round-tracker.html", {'show_sample': 'show_sample' in request.GET})
+    http.xframe.inject(resp)
+
+    return resp

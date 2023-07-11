@@ -1,4 +1,4 @@
-{% extends "static/base.html" %}
+{% extends plugin_layout|yesno:"static/base_plugin.html,static/base.html" %}
 {% load static %}
 
 <!--suppress HtmlFormInputWithoutLabel -->
@@ -61,7 +61,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container pt-5 mt-5">
+    <div class="container {% if plugin_layout %}pt-1 mt-1{% else %}pt-5 mt-5{% endif %}">
         <div class="row">
             <div class="col-1">
                 <button class="btn btn-icon btn-secondary rounded-circle add-group" type="button"><span>+</span></button>
