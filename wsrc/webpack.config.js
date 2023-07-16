@@ -9,7 +9,10 @@ const __dist = path.resolve('../assets/dist');
 fsExtra.emptydirSync(__dist);
 
 module.exports = {
-    entry: './roundTracker.ts',
+    entry: {
+        roundTracker: './roundTracker.ts',
+        geo: './geo.ts',
+    },
     module: {
         rules: [
             {
@@ -23,7 +26,7 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
-        filename: 'roundTracker.js',
+        filename: '[name].js',
         path: path.resolve('../assets/dist'),
     },
     devServer: {

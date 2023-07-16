@@ -17,4 +17,7 @@ def resume(request):
     return render(request, "static/resume.html", {})
 
 
+def geo(request):
+    logger.debug(f'[VIEW]: {__name__}')
 
+    return render(request, "static/geo.html", {})

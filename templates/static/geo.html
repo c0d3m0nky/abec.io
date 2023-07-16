@@ -1,0 +1,280 @@
+{% load static %}
+<!DOCTYPE html>
+<!--suppress HtmlRequiredAltAttribute -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>abec.io</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--
+        Comic Neue      https://fonts.google.com/specimen/Comic+Neue?query=comic
+        Courier Prime   https://fonts.google.com/specimen/Courier+Prime?query=courier
+     -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+          rel="stylesheet">
+    <link href="{% static 'dist/css/bootstrap-5.2.3.css' %}" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #ffcf80;
+            text-align: center !important;
+            font-size: 1.5rem;
+        }
+
+        /* region fonts */
+
+        .andale {
+
+        }
+
+        .arial {
+
+        }
+
+        .comic {
+            font-family: 'Comic Neue', cursive;
+        }
+
+        .courier {
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .georgia {
+
+        }
+
+        .impact {
+
+        }
+
+        .roman {
+
+        }
+
+        .trebuchet {
+
+        }
+
+        .verdana {
+
+        }
+
+        .webdings {
+
+        }
+
+        /* endregion */
+
+        .nav {
+            margin-top: 10px;
+            border-bottom: solid blueviolet 5px;
+            font-size: 166%;
+        }
+
+        .nav > div:hover {
+            background-color: violet;
+            color: white;
+        }
+
+        .blink {
+            transition: 0.4s;
+        }
+
+        .gif-row img {
+            height: 90px;
+        }
+
+        {% if settings_dev %}
+            body::before {
+                content: "";
+                color: red;
+                font-size: 2rem;
+                font-weight: bold;
+                position: fixed;
+                top: 0;
+                right: 5px;
+            }
+
+            .dev-view-width {
+                color: red;
+                font-size: 0.75rem;
+                font-weight: bold;
+                position: fixed;
+                top: 40px;
+                right: 10px;
+            }
+
+            @media (min-width: 576px) {
+                body::before {
+                    content: "SM";
+                }
+            }
+
+            @media (min-width: 768px) {
+                body::before {
+                    content: "MD";
+                }
+            }
+
+            @media (min-width: 992px) {
+                body::before {
+                    content: "LG";
+                }
+            }
+
+            @media (min-width: 1200px) {
+                body::before {
+                    content: "XL";
+                }
+            }
+
+            @media (min-width: 1400px) {
+                body::before {
+                    content: "XXL";
+                }
+            }
+        {% endif %}
+    </style>
+
+    {% block head_base %}
+    {% endblock %}
+</head>
+<body>
+<main class="page-wrapper">
+    <div class="container">
+        <div class="d-flex justify-content-around nav courier">
+            <div class="col m-2"><a href="#">Home</a></div>
+            <div class="col m-2"><a href="#">Tools</a></div>
+            <div class="col m-2"><a href="#">Resume</a></div>
+            <div class="col m-2"><a href="#">Timemachine</a></div>
+        </div>
+    </div>
+    {% block content %}
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-8 offset-2 comic blink" style="color: blueviolet; font-size: 300%; font-weight: bold;">Berto</div>
+            </div>
+            <div class="row">
+                <div class="col-8 offset-2">Space nerd; Professional 'engineer'; Amateur engineer; Chaotic Good; he/him</div>
+            </div>
+            <div class="row p-5">&nbsp;</div>
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <h2 class="mb-4">Software Engineer</h2>
+                    <p class="">
+                        C#, Javascript, Java, Python, C++, .Net, Node, MSSql, Postgres, MariaDB, RabbitMQ, Kafka
+                    </p>
+                </div>
+            </div>
+            <div class="row p-5">&nbsp;</div>
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <h2 class="mb-4">Hobbies</h2>
+                    <p class="">
+                        Woodworking, Electronics Tinkerer, Tabletop Gaming, Story Rich & Physics Puzzle Video Games, Gearhead, Flying
+                    </p>
+                </div>
+            </div>
+            <div class="row p-5">&nbsp;</div>
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <h2 class="mb-4">Interests</h2>
+                    <p class="">
+                        Space, Physics, Math, Aeronautics, Ska, Broadway, Rom-Coms, Heist Media, Queen's Thief
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container pt-5">
+            <div class="d-flex justify-content-center gif-row">
+                <img src="{% static 'img/geo/glitch-city.gif' %}">
+                <img src="{% static 'img/geo/hacker.gif' %}">
+                <img src="{% static 'img/geo/shuttle.gif' %}">
+                <img src="{% static 'img/geo/alonsy.gif' %}">
+                <img src="{% static 'img/geo/rancid-skank.gif' %}">
+                <img src="{% static 'img/geo/ska-music.gif' %}">
+                <img src="{% static 'img/geo/madness.gif' %}">
+                <img src="{% static 'img/geo/solarsystem.gif' %}">
+                <img src="{% static 'img/geo/bits.gif' %}">
+                <img src="{% static 'img/geo/portal.gif' %}">
+                <img src="{% static 'img/geo/be-gay-do-crime.gif' %}">
+            </div>
+        </div>
+    {% endblock %}
+</main>
+<footer class="footer pt-5">
+    <div class="container">
+        <div class="d-flex justify-content-around pt-5">
+            <div class="col-2">
+                <a href="https://twitter.com/c0d3m0nky" target="_blank">Twitter</a>
+            </div>
+            <div class="col-2">
+                <a href="https://github.com/c0d3m0nky" target="_blank">GitHub</a>
+            </div>
+            <div class="col-2">
+                <a href="https://www.tinkercad.com/users/ejeWI9zErb2-qbanbpc" target="_blank">TinkerCAD</a>
+            </div>
+            <div class="col-2">
+                <a href="https://forums.unraid.net/profile/127896-c0d3m0nk3y/" target="_blank">Unraid</a>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="col-8 offset-2">
+                <span class="opacity-70">Copyright &copy; abec.io 2023. All rights reserved</span>
+            </div>
+        </div>
+        <div class="row p-5">
+            <div class="col-8 offset-2">
+                <div>De Puri Cordis</div>
+                <div>Natus Rebellis</div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'dist/bootstrap-5.2.3.min.js' %}"></script>
+<script src="{% static 'dist/jquery.js' %}"></script>
+<script src="{% static 'dist/geo.js' %}"></script>
+<script lang="JavaScript">
+    function listFonts() {
+        let {fonts} = document;
+        const it = fonts.entries();
+
+        let arr = [];
+        let done = false;
+
+        while (!done) {
+            const font = it.next();
+            if (!font.done) {
+                arr.push(font.value[0].family);
+            } else {
+                done = font.done;
+            }
+        }
+
+        // converted to set then arr to filter repetitive values
+        return [...new Set(arr)];
+    }
+</script>
+
+{% if settings_dev %}
+    <div class="dev-view-width"></div>
+    <script lang="JavaScript">
+        function set() {
+            $('.dev-view-width').text(`${window.innerWidth}x${window.innerHeight}`)
+        }
+
+        addEventListener("resize", (event) => {
+            set();
+        });
+
+        set();
+    </script>
+{% endif %}
+
+{% block scripts_base %}
+{% endblock %}
+</body>
+</html>
