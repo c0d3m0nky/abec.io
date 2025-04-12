@@ -8,6 +8,7 @@ import utils.u_http as http
 
 logger = logging.getLogger(__name__)
 
+
 def round_tracker(request: HttpRequest):
     ctx = {'plugin_layout': 'plugin_layout' in request.GET}
     resp: HttpResponse = render(request, "dnd/round-tracker.html", ctx)

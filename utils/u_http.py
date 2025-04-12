@@ -1,8 +1,9 @@
 from os import environ
 from django.http import HttpResponse
 
+
 class _XFrameInjection():
-    _xframe_origins: str
+    _xframe_origins: str | None
 
     def __init__(self):
         self._xframe_origins = None
@@ -19,5 +20,3 @@ class _XFrameInjection():
 
 
 xframe = _XFrameInjection()
-
-
