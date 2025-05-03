@@ -1,17 +1,16 @@
-FROM python:3.11
+FROM python:3.12-alpine
 
-WORKDIR /abec.io
+ARG logPrefix="**** "
+ARG logSuffix="  ****"
 
-COPY ./base_site /abec.io/base_site/
-COPY ./assets /abec.io/assets/
-COPY ./static /abec.io/static/
-COPY ./tools /abec.io/tools/
-COPY ./templates /abec.io/templates/
-COPY ./utils /abec.io/utils/
-COPY ./manage.py /abec.io/manage.py
-COPY ./requirements.txt /abec.io/requirements.txt
+COPY ./entrypoint.sh /startup/entrypoint.sh
+COPY ./buildWeb.sh /startup/buildWeb.sh
 
-RUN pip install --no-cache-dir --upgrade -r /abec.io/requirements.txt
+RUN \
+  printf "${logPrefix}install packages${logSuffix}" && \
+  apk add --no-cache \
+    git \
+    npm
 
-CMD echo '---> pip pip hooray' && pip install --no-cache-dir --upgrade -r /abec.io/requirements.txt && echo '---> starting site' && python manage.py runserver 0.0.0.0:80 && echo '---> ended'
+CMD /startup/entrypoint.sh
 #&& echo '---> django migrations' && python manage.py migrate
