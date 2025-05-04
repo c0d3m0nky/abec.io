@@ -295,6 +295,7 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                        {% if site_host != 'abec.io' %}
                                         <div class="mega-dropdown-column pb-2 pt-lg-3 pb-lg-4">
                                             <ul class="list-unstyled mb-0">
                                                 <li>
@@ -302,12 +303,15 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </li>
+                            {% if site_host != 'abec.io' %}
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Placeholder</a>
                             </li>
+                            {% endif %}
                         {% endblock %}
                         {% block add_nav %}
                         {% endblock %}
