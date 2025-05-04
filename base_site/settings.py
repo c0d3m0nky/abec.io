@@ -25,13 +25,18 @@ else:
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# noinspection SpellCheckingInspection
 SECRET_KEY = 'django-insecure-33q#f)m6aw#+q^bw39s9a5lh$hd93m1x(&8(fc)+n!t4!acoc4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEBUG' in os.environ and os.environ.get('DEBUG').lower() == 'true'
 DEV_MODE = 'DEV_MODE' in os.environ and os.environ.get('DEV_MODE').lower() == 'true'
 
-ALLOWED_HOSTS = ['abec.io', 'www.abec.io', 'www.theroomofrequirement.net', '127.0.0.1']
+ALLOWED_HOSTS = ['abec.io', 'www.abec.io', 'abec.dev', 'www.abec.dev']
+
+if DEV_MODE:
+    ALLOWED_HOSTS.append('localhost')
+    ALLOWED_HOSTS.append('127.0.0.1')
 
 # Application definition
 
@@ -129,6 +134,7 @@ STATIC_URL = 'assets/'
 if not DEBUG:
     STATIC_ROOT = BASE_DIR / 'assets'
 
+    # noinspection PyUnresolvedReferences
     STATICFILES_DIRS = [
         STATIC_ROOT / 'css',
         STATIC_ROOT / 'fa',

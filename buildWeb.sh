@@ -1,16 +1,8 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 set -e
 
-export NVM_DIR=$HOME/.nvm;
-source "$NVM_DIR"/nvm.sh;
-
-cd wsrc
-
-echo '---'
-echo 'nvm use'
-echo '---'
-nvm use
+rm -rf node_modules
 
 echo '---'
 echo 'npm install'
@@ -20,5 +12,4 @@ npm install
 echo '---'
 echo 'webpack build'
 echo '---'
-npm run develop
-
+npm run build

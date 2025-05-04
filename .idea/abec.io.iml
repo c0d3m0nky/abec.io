@@ -18,14 +18,13 @@
       <sourceFolder url="file://$MODULE_DIR$/static" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tools" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/utils" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/wsrc" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/assets/bs" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/archive" />
       <excludeFolder url="file://$MODULE_DIR$/assets/dist" />
       <excludeFolder url="file://$MODULE_DIR$/logs" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.11 (abec.io)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.12 (abec.io)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
