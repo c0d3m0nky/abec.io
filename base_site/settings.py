@@ -32,7 +32,11 @@ SECRET_KEY = 'django-insecure-33q#f)m6aw#+q^bw39s9a5lh$hd93m1x(&8(fc)+n!t4!acoc4
 DEBUG = 'DEBUG' in os.environ and os.environ.get('DEBUG').lower() == 'true'
 DEV_MODE = 'DEV_MODE' in os.environ and os.environ.get('DEV_MODE').lower() == 'true'
 
-ALLOWED_HOSTS = ['abec.io', 'www.abec.io', 'abec.dev', 'www.abec.dev', '127.0.0.1']
+ALLOWED_HOSTS = ['abec.io', 'www.abec.io', 'abec.dev', 'www.abec.dev']
+
+if DEV_MODE:
+    ALLOWED_HOSTS.append('localhost')
+    ALLOWED_HOSTS.append('127.0.0.1')
 
 # Application definition
 

@@ -1,8 +1,8 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 set -e
 
-cd wsrc
+rm -rf node_modules
 
 echo '---'
 echo 'npm install'
@@ -12,5 +12,4 @@ npm install
 echo '---'
 echo 'webpack build'
 echo '---'
-npm run develop
-
+npm run build

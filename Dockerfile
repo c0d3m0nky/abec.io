@@ -4,11 +4,15 @@ ARG logPrefix="**** "
 ARG logSuffix="  ****"
 
 COPY ./entrypoint.sh /startup/entrypoint.sh
-COPY ./buildWeb.sh /startup/buildWeb.sh
+
+RUN \
+  printf "${logPrefix}Setting permissions${logSuffix}" && \
+  chmod +x /startup/entrypoint.sh
 
 RUN \
   printf "${logPrefix}install packages${logSuffix}" && \
   apk add --no-cache \
+    bash \
     git \
     npm
 
