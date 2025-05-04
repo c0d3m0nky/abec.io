@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>abec.io</title>
+    <title debugattr="{{ site_host }}">{{ site_base_title }}</title>
 
     <link href="{% static 'dist/css/bootstrap-5.2.3.css' %}" rel="stylesheet">
 
@@ -260,7 +260,8 @@
         {% endif %}
     </style>
 
-    <link href="{% static '/fa/fontawesome.min.css' %}" rel="stylesheet">
+{#    <link href="{% static '/fa/fontawesome.min.css' %}" rel="stylesheet">#}
+    <script src="https://kit.fontawesome.com/76cdae47df.js" crossorigin="anonymous"></script>
     <link href="{% static 'dist/css/static-base.css' %}" rel="stylesheet">
     {% block head_base %}
     {% endblock %}
@@ -276,7 +277,7 @@
     {% block nav_bar %}
         <header class="navbar navbar-expand-lg fixed-top">
             <div class="container">
-                <a class="navbar-brand brand-text pe-sm-3" href="/">abec.io</a>
+                <a class="navbar-brand brand-text pe-sm-3" href="/">{{ site_host_display }}</a>
                 <nav class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll me-auto d-flex" style="--ar-scroll-height: 520px;">
                         {% block splice_nav %}
@@ -294,9 +295,23 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                        {% if site_host != 'abec.io' %}
+                                        <div class="mega-dropdown-column pb-2 pt-lg-3 pb-lg-4">
+                                            <ul class="list-unstyled mb-0">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Placeholder 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </li>
+                            {% if site_host != 'abec.io' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Placeholder</a>
+                            </li>
+                            {% endif %}
                         {% endblock %}
                         {% block add_nav %}
                         {% endblock %}
@@ -316,15 +331,15 @@
         <div class="row pb-4 pb-md-5 pt-sm-2 mb-lg-2">
             <div class="col-md-4 col-lg-3 pb-2 pb-md-0 mb-4 mb-md-0">
                 <a class="navbar-brand brand-text text-nav py-0 mb-3 mb-md-4" href="/">
-                    <span>abec.io</span>
+                    <span>{{ site_host_display }}</span>
                 </a>
                 <div class="fs-sm pb-2 pb-md-3 mb-3">
                     <div>De Puri Cordis</div>
                     <div>Natus Rebellis</div>
                 </div>
                 <div class="d-flex">
-                    <a class="btn btn-icon btn-md btn-secondary btn-twitter rounded-circle me-3" href="https://twitter.com/c0d3m0nky" target="_blank">
-                        <i class="ai-twitter"></i>
+                    <a class="btn btn-icon btn-md btn-secondary btn-twitter rounded-circle me-3" href="https://bsky.app/profile/c0d3m0nk3y.bsky.social" target="_blank">
+                        <i class="fa-brands fa-bluesky"></i>
                     </a>
                     <a class="btn btn-icon btn-md btn-secondary btn-github rounded-circle me-3" href="https://github.com/c0d3m0nky" target="_blank">
                         <i class="ai-github"></i>
@@ -345,7 +360,7 @@
             </div>
         </div>
         <p class="fs-sm mb-0">
-            <span class="opacity-70">Copyright &copy; abec.io 2023. All rights reserved. Theme by </span>
+            <span class="opacity-70">Copyright &copy; {{ site_host_display }} 2023. All rights reserved. Theme by </span>
             <a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a>
         </p>
     </div>

@@ -1,6 +1,6 @@
 services:
   abec.dev:
-    container_name: abec-dev
+    container_name: abec-local
     image: d.espacebyte.net/berto/abec.io:dev
     ports:
       - '8080:80'
