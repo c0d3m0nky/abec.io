@@ -44,7 +44,10 @@ fi
 echo 'Setting up webBuild script'
 mkdir /webBuild
 cp -r wsrc/ /webBuild/wsrc
-cd /webBuild/wsrc
+cp package*.json /webBuild
+cp tsconfig.json /webBuild
+cp webpack.config.js /webBuild
+cd /webBuild/
 
 echo 'Running webBuild script'
 /repo/buildWeb.sh

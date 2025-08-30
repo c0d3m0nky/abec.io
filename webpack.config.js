@@ -4,14 +4,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 
-const __dist = path.resolve('../assets/dist');
+const __dist = path.resolve('./assets/dist');
 
 fsExtra.emptydirSync(__dist);
 
 module.exports = {
     entry: {
-        roundTracker: './roundTracker.ts',
-        geo: './geo.ts',
+        roundTracker: './wsrc/roundTracker.ts',
+        geo: './wsrc/geo.ts',
     },
     module: {
         rules: [
@@ -27,10 +27,10 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve('../assets/dist'),
+        path: __dist,
     },
     devServer: {
-        static: path.resolve('../assets/dist'),
+        static: __dist,
         compress: true,
         port: 4000,
     },
@@ -55,11 +55,11 @@ module.exports = {
                     to: path.join(__dist, 'jquery.js')
                 },
                 {
-                    from: './css/',
+                    from: './wsrc/css/',
                     to: path.join(__dist, 'css/')
                 },
                 {
-                    from: './js/',
+                    from: './wsrc/js/',
                     to: __dist,
                     globOptions: {
                         ignore: [

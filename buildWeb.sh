@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -12,4 +12,4 @@ npm install
 echo '---'
 echo 'webpack build'
 echo '---'
-npm run build
+npx webpack --config webpack.config.js
